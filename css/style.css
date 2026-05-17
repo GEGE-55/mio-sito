@@ -1,0 +1,539 @@
+/* ==========================================
+   1. Reset, Variabili e Scorrimento
+   ========================================== */
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 85px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+    line-height: 1.7;
+    color: #2c3e50;          
+    background-color: #f8fafc; 
+    overflow-x: hidden;
+}
+
+/* ==========================================
+   2. TESTATA FISSA
+   ========================================== */
+.site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 85px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 60px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 30px rgba(0,0,0,0.04);
+    z-index: 1000;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.brand-container {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.site-custom-logo {
+    height: 46px;         
+    width: auto;          
+    object-fit: contain;
+    display: block;
+}
+
+.logo-text {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1a365d; 
+    letter-spacing: -0.5px;
+}
+
+/* MENU */
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nav-item {
+    text-decoration: none;
+    color: #4a5568;
+    padding: 10px 20px;
+    font-weight: 600;
+    font-size: 14px;
+    border-radius: 5px;
+    transition: all 0.25s ease;
+}
+
+.nav-item:hover, .nav-item.active {
+    color: #2b6cb0;
+    background-color: #f1f5f9;
+}
+
+.btn-nav {
+    background-color: #1a365d;
+    color: #ffffff !important;
+    margin-left: 15px;
+    box-shadow: 0 4px 12px rgba(26, 54, 93, 0.2);
+}
+
+.btn-nav:hover {
+    background-color: #2b6cb0;
+    box-shadow: 0 4px 12px rgba(43, 108, 176, 0.3);
+}
+
+.main-content {
+    margin-top: 85px;
+}
+
+/* ==========================================
+   3. HERO: CONFIGURAZIONE TOTALMENTE SULLA DESTRA
+   ========================================== */
+.hero-ground-layout {
+    height: calc(100vh - 85px); 
+    position: relative;        
+    background-color: #2d3748;  
+    overflow: hidden;
+}
+
+/* Griglia millimetrata */
+.mat-grid-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    background-size: 20px 20px;
+    z-index: 1;
+}
+
+/* Linee blu */
+.mat-lines-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(rgba(0, 180, 216, 0.08) 2px, transparent 2px),
+                      linear-gradient(90deg, rgba(0, 180, 216, 0.08) 2px, transparent 2px);
+    background-size: 100px 100px;
+    z-index: 2;
+}
+
+/* FOTO TRASPARENTE INCOLLATA SUL BORDO SINISTRO */
+.profile-photo-on-floor {
+    position: absolute;
+    left: 0;          
+    bottom: 0;        
+    height: 92%;      
+    width: auto;
+    object-fit: contain;
+    z-index: 20;      
+}
+
+/* CONTENITORE BLOCCO BLU SCURO */
+.drawing-right-blocks {
+    position: absolute;
+    right: 60px;       
+    top: 55px;          
+    width: 50%;        
+    bottom: 250px;      
+    z-index: 5;
+    display: flex;
+}
+
+.block-top-darkblue {
+    background-color: #1a365d; 
+    border-top: 6px solid #00b4d8; 
+    padding: 35px;
+    border-radius: 8px;
+    box-shadow: 0 20px 45px rgba(0,0,0,0.35);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+}
+
+.spec-drawing-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    height: 100%;
+}
+
+.spec-drawing-item { 
+    flex: 1; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.spec-drawing-item .spec-num { 
+    font-size: 11px; 
+    font-weight: 700; 
+    color: #00b4d8; 
+    text-transform: uppercase; 
+    letter-spacing: 1px; 
+    margin-bottom: 8px;
+}
+
+.spec-drawing-item h4 { 
+    font-size: 17px; 
+    color: #ffffff; 
+    margin-bottom: 12px; 
+    font-weight: 700;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 10px;
+}
+
+.spec-intro-text {
+    font-size: 13px;
+    color: #cbd5e0;
+    line-height: 1.5;
+    margin-bottom: 15px;
+    text-align: justify;
+    opacity: 0.9;
+}
+
+.spec-list-tech {
+    list-style-type: none;
+    margin-bottom: 20px;
+    flex-grow: 1;
+}
+
+.spec-list-tech li {
+    font-size: 13px;
+    color: #cbd5e0;
+    line-height: 1.5;
+    margin-bottom: 8px;
+    position: relative;
+    padding-left: 12px;
+}
+
+.spec-list-tech li::before {
+    content: '▪';
+    position: absolute;
+    left: 0;
+    color: #00b4d8;
+    font-size: 10px;
+    top: -1px;
+}
+
+.spec-footer-tag {
+    font-size: 11px;
+    font-weight: 700;
+    color: #a0aec0;
+    text-transform: uppercase;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 4px 8px;
+    border-radius: 4px;
+    display: inline-block;
+    align-self: flex-start;
+}
+
+/* FASCIA AZZURRA ANCORATA TOTALMENTE A DESTRA */
+.new-bottom-cyan-band {
+    position: absolute;
+    bottom: 0;
+    right: 0;          
+    width: 55%;        
+    background-color: #00b4d8; 
+    padding: 40px 50px; 
+    z-index: 4; 
+    box-shadow: -5px -5px 30px rgba(0,0,0,0.15);
+    min-height: 220px;
+    display: flex;
+    align-items: center;
+    border-radius: 8px 0 0 0; 
+}
+
+.band-content-inline {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 40px;
+}
+
+.text-side-band {
+    color: #ffffff;
+    max-width: 500px;
+}
+
+.eng-tag-band {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #1a365d;
+    font-weight: 700;
+    display: block;
+    margin-bottom: 6px;
+}
+
+.text-side-band h1 {
+    font-size: 32px;
+    font-weight: 800;
+    color: #1a365d;
+    margin-bottom: 8px;
+    line-height: 1.2;
+}
+
+.text-side-band p {
+    font-size: 14px;
+    color: #ffffff;
+    opacity: 0.95;
+}
+
+.btn-drawing-action {
+    display: inline-block;
+    padding: 15px 30px;
+    background-color: #1a365d; 
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: 700;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 15px rgba(26, 54, 93, 0.25);
+}
+
+.btn-drawing-action:hover {
+    background-color: #2b6cb0;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(43, 108, 176, 0.35);
+}
+
+/* ==========================================
+   4. SEZIONE CV COMPLETA
+   ========================================== */
+.cv-section { background-color: #ffffff; }
+.cv-profile-intro { background-color: #f8fafc; border-left: 4px solid #1a365d; padding: 25px; border-radius: 6px; margin-bottom: 40px; font-size: 16px; color: #334155; line-height: 1.6;}
+.cv-two-columns { display: flex; gap: 50px; }
+.cv-left-main-col { flex: 2; }
+.cv-right-side-col { flex: 1; display: flex; flex-direction: column; gap: 30px; }
+.cv-block-title { display: flex; align-items: center; gap: 12px; margin-bottom: 25px; border-bottom: 2px solid #f1f5f9; padding-bottom: 8px; }
+.cv-icon-tag { font-size: 24px; }
+.cv-block-title h3 { font-size: 22px; color: #1a365d; font-weight: 700; }
+.space-top-block { margin-top: 40px; }
+
+/* Timeline Dettagliata */
+.timeline { border-left: 3px solid #e2e8f0; padding-left: 30px; position: relative; }
+.timeline-item { margin-bottom: 40px; position: relative; }
+.timeline-item::before { content: ''; position: absolute; left: -37px; top: 6px; width: 11px; height: 11px; border-radius: 50%; background-color: #00b4d8; border: 3px solid #ffffff; box-shadow: 0 0 0 3px #00b4d8; }
+.timeline-item h3 { color: #1a365d; font-size: 20px; font-weight: 700; margin-bottom: 2px; }
+.timeline-item h4 { color: #2b6cb0; font-size: 15px; font-weight: 600; margin-bottom: 10px; }
+.date { font-size: 13px; color: #4a5568; font-weight: 700; margin-bottom: 8px; background: #edf2f7; display: inline-block; padding: 2px 10px; border-radius: 4px; }
+.cv-details-list { list-style-type: none; }
+.cv-details-list li { font-size: 14px; color: #475569; margin-bottom: 6px; position: relative; padding-left: 15px; }
+.cv-details-list li::before { content: '•'; position: absolute; left: 0; color: #00b4d8; font-weight: bold; }
+
+/* Certificazioni */
+.cv-certifications-box { display: flex; flex-direction: column; gap: 20px; }
+.cert-item { background-color: #f8fafc; padding: 20px; border-radius: 6px; border-left: 3px solid #00b4d8; }
+.cert-item h5 { font-size: 15px; color: #1a365d; font-weight: 700; margin-bottom: 6px; display: flex; justify-content: space-between; align-items: center; }
+.cert-year { background: #e2e8f0; font-size: 12px; padding: 2px 8px; border-radius: 4px; color: #4a5568; }
+.cert-item p { font-size: 13px; color: #475569; }
+
+/* Sidebar CV Boxes */
+.sidebar-cv-box { background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 25px; }
+.sidebar-cv-box h4 { font-size: 18px; color: #1a365d; margin-bottom: 20px; font-weight: 700; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px; }
+.skills-grid-cv { display: flex; flex-wrap: wrap; gap: 8px; }
+.skill-badge-cv { background-color: #ffffff; border: 1px solid #cbd5e1; color: #334155; padding: 6px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; }
+.languages-list-cv { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+.languages-list-cv li { display: flex; justify-content: space-between; align-items: center; font-size: 14px; font-weight: 600; color: #334155; border-bottom: 1px dashed #e2e8f0; padding-bottom: 6px; }
+.lang-level { font-size: 12px; color: #64748b; background-color: #edf2f7; padding: 2px 8px; border-radius: 4px; }
+.level-high { background-color: #dbeafe; color: #1e40af; }
+
+/* ==========================================
+   5. SEZIONI PROGETTI E SERVIZI
+   ========================================== */
+.section {
+    min-height: 80vh;
+    padding: 120px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.section-container { max-width: 1200px; width: 100%; margin: 0 auto; }
+.section-title { font-size: 36px; color: #1a365d; margin-bottom: 50px; font-weight: 800; position: relative; padding-bottom: 12px;}
+.section-title::after { content: ''; position: absolute; bottom: 0; left: 0; width: 60px; height: 4px; background-color: #00b4d8; border-radius: 2px;}
+
+.progetti-section { background-color: #f8fafc; }
+.servizi-section { background-color: #ffffff; }
+
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); gap: 40px; }
+
+.project-card { background: #ffffff; padding: 40px; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.03); border-left: 5px solid #2b6cb0; transition: transform 0.3s ease; }
+.project-card:hover { transform: translateY(-5px); }
+.card-tag { font-size: 11px; font-weight: 800; text-transform: uppercase; color: #2b6cb0; letter-spacing: 1px; margin-bottom: 10px; }
+.project-card h3 { font-size: 22px; color: #1a365d; margin-bottom: 15px; }
+.project-card p { font-size: 14px; color: #4a5568; margin-bottom: 20px; text-align: justify; }
+.card-tech { font-size: 12px; font-weight: 700; color: #718096; background: #f1f5f9; padding: 5px 12px; border-radius: 4px; display: inline-block; }
+
+.service-box { background: #f8fafc; padding: 40px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.01); border-left: 5px solid #1a365d; transition: all 0.3s ease; }
+.service-box:hover { background: #ffffff; box-shadow: 0 15px 30px rgba(0,0,0,0.05); }
+.service-icon { font-size: 32px; margin-bottom: 15px; }
+.service-box h4 { font-size: 20px; color: #1a365d; margin-bottom: 12px; font-weight: 700; }
+.service-box p { font-size: 14px; color: #4a5568; text-align: justify; }
+
+/* ==========================================
+   6. SEZIONE CONTATTI POTENZIATA (REAL DATA)
+   ========================================== */
+.contatti-section { 
+    background-color: #1a365d; 
+    color: #ffffff; 
+    position: relative;
+    overflow: hidden;
+}
+
+.contatti-section .section-title::after {
+    background-color: #00b4d8;
+}
+
+.contact-grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    gap: 40px;
+    margin-top: 30px;
+}
+
+.contact-card-box {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 40px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+    text-align: left;
+}
+
+.contact-card-box h4 {
+    font-size: 20px;
+    color: #00b4d8;
+    margin-bottom: 25px;
+    font-weight: 700;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 12px;
+}
+
+.contact-real-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.contact-real-list li {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.contact-icon {
+    font-size: 22px;
+    background: rgba(255, 255, 255, 0.08);
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: #00b4d8;
+    flex-shrink: 0;
+}
+
+.contact-info-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-label {
+    font-size: 12px;
+    text-transform: uppercase;
+    color: #94a3b8;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+}
+
+.contact-link-item {
+    font-size: 16px;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+.contact-link-item:hover {
+    color: #00b4d8;
+    text-decoration: underline;
+}
+
+.contact-value-text {
+    font-size: 16px;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+/* Grafica UNIFE */
+.unife-reference-content h5 {
+    font-size: 24px;
+    color: #ffffff;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.unife-reference-content .unife-sub {
+    font-size: 14px;
+    color: #94a3b8;
+    margin-top: 2px;
+    font-weight: 600;
+}
+
+.space-top-unife {
+    margin-top: 25px;
+}
+
+/* Footer */
+.site-footer { text-align: center; padding: 30px; background-color: #0f172a; color: #94a3b8; font-size: 14px; border-top: 1px solid #1e293b; }
+
+/* ==========================================
+   7. RESPONSIVITÀ (MEDIA QUERIES)
+   ========================================== */
+@media (max-width: 1024px) {
+    .site-header { padding: 0 30px; }
+    .hero-ground-layout { height: auto; min-height: 100vh; padding: 40px 20px 0 20px; display: flex; flex-direction: column; justify-content: flex-start;}
+    .profile-photo-on-floor { position: relative; max-height: 400px; width: auto; order: 2; margin: 40px auto 0 auto; display: block; }
+    .drawing-right-blocks { position: relative; right: auto; top: auto; width: 100%; margin-top: 20px; order: 1; bottom: auto; }
+    .new-bottom-cyan-band { position: relative; width: 120%; margin-left: -10%; border-radius: 0; order: 3; padding: 30px 20px; }
+    .cv-two-columns { flex-direction: column; gap: 40px; }
+    .contact-grid-container { grid-template-columns: 1fr; }
+    .grid { grid-template-columns: 1fr; }
+    .section { padding: 80px 20px; }
+}
+
+@media (max-width: 768px) {
+    .site-header { flex-direction: column; height: auto; padding: 15px; gap: 10px; }
+    .main-content { margin-top: 140px; }
+    .nav-menu { flex-wrap: wrap; justify-content: center; }
+    .nav-item { padding: 5px 10px; font-size: 13px; }
+    .btn-nav { margin-left: 0; }
+    .spec-drawing-row { flex-direction: column; gap: 20px; }
+    .band-content-inline { flex-direction: column; text-align: center; gap: 25px; }
+    .btn-drawing-action { width: 100%; }
+}
