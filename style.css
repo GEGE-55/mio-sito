@@ -1,0 +1,351 @@
+/* ==========================================
+   1. Reset, Variabili e Scorrimento
+   ========================================== */
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 85px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+    line-height: 1.7;
+    color: #2c3e50;          
+    background-color: #f8fafc; 
+    overflow-x: hidden;
+}
+
+/* ==========================================
+   2. TESTATA FISSA
+   ========================================== */
+.site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 85px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 60px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 30px rgba(0,0,0,0.04);
+    z-index: 1000;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.brand-container {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.site-custom-logo {
+    height: 46px;         
+    width: auto;          
+    object-fit: contain;
+    display: block;
+}
+
+.logo-text {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1a365d; 
+    letter-spacing: -0.5px;
+}
+
+/* MENU */
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nav-item {
+    text-decoration: none;
+    color: #4a5568;
+    padding: 10px 20px;
+    font-weight: 600;
+    font-size: 14px;
+    border-radius: 5px;
+    transition: all 0.25s ease;
+}
+
+.nav-item:hover, .nav-item.active {
+    color: #2b6cb0;
+    background-color: #f1f5f9;
+}
+
+.btn-nav {
+    background-color: #1a365d;
+    color: #ffffff !important;
+    margin-left: 15px;
+    box-shadow: 0 4px 12px rgba(26, 54, 93, 0.2);
+}
+
+.btn-nav:hover {
+    background-color: #2b6cb0;
+    box-shadow: 0 4px 12px rgba(43, 108, 176, 0.3);
+}
+
+.main-content {
+    margin-top: 85px;
+}
+
+/* ==========================================
+   3. HERO: CONFIGURAZIONE TOTALMENTE SULLA DESTRA
+   ========================================== */
+.hero-ground-layout {
+    height: calc(100vh - 85px); 
+    position: relative;        
+    background-color: #2d3748;  
+    overflow: hidden;
+}
+
+/* Griglia millimetrata */
+.mat-grid-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    background-size: 20px 20px;
+    z-index: 1;
+}
+
+/* Linee blu */
+.mat-lines-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(rgba(0, 180, 216, 0.08) 2px, transparent 2px),
+                      linear-gradient(90deg, rgba(0, 180, 216, 0.08) 2px, transparent 2px);
+    background-size: 100px 100px;
+    z-index: 2;
+}
+
+/* FOTO TRASPARENTE INCOLLATA SUL BORDO SINISTRO */
+.profile-photo-on-floor {
+    position: absolute;
+    left: 0;          
+    bottom: 0;        
+    height: 92%;      
+    width: auto;
+    object-fit: contain;
+    z-index: 20;      
+}
+
+/* CONTENITORE BLOCCO BLU SCURO */
+.drawing-right-blocks {
+    position: absolute;
+    right: 60px;       
+    top: 55px;          
+    width: 50%;        
+    bottom: 250px;      
+    z-index: 5;
+    display: flex;
+}
+
+.block-top-darkblue {
+    background-color: #1a365d; 
+    border-top: 6px solid #00b4d8; 
+    padding: 35px;
+    border-radius: 8px;
+    box-shadow: 0 20px 45px rgba(0,0,0,0.35);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+}
+
+.spec-drawing-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    height: 100%;
+}
+
+.spec-drawing-item { 
+    flex: 1; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.spec-drawing-item .spec-num { 
+    font-size: 11px; 
+    font-weight: 700; 
+    color: #00b4d8; 
+    text-transform: uppercase; 
+    letter-spacing: 1px; 
+    margin-bottom: 8px;
+}
+
+.spec-drawing-item h4 { 
+    font-size: 17px; 
+    color: #ffffff; 
+    margin-bottom: 12px; 
+    font-weight: 700;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 10px;
+}
+
+.spec-intro-text {
+    font-size: 13px;
+    color: #cbd5e0;
+    line-height: 1.5;
+    margin-bottom: 15px;
+    text-align: justify;
+    opacity: 0.9;
+}
+
+.spec-list-tech {
+    list-style-type: none;
+    margin-bottom: 20px;
+    flex-grow: 1;
+}
+
+.spec-list-tech li {
+    font-size: 13px;
+    color: #cbd5e0;
+    line-height: 1.5;
+    margin-bottom: 8px;
+    position: relative;
+    padding-left: 12px;
+}
+
+.spec-list-tech li::before {
+    content: '▪';
+    position: absolute;
+    left: 0;
+    color: #00b4d8;
+    font-size: 10px;
+    top: -1px;
+}
+
+.spec-footer-tag {
+    font-size: 11px;
+    font-weight: 700;
+    color: #a0aec0;
+    text-transform: uppercase;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 4px 8px;
+    border-radius: 4px;
+    display: inline-block;
+    align-self: flex-start;
+}
+
+/* FASCIA AZZURRA ANCORATA TOTALMENTE A DESTRA */
+.new-bottom-cyan-band {
+    position: absolute;
+    bottom: 0;
+    right: 0;          
+    width: 55%;        
+    background-color: #00b4d8; 
+    padding: 40px 50px; 
+    z-index: 4; 
+    box-shadow: -5px -5px 30px rgba(0,0,0,0.15);
+    min-height: 220px;
+    display: flex;
+    align-items: center;
+    border-radius: 8px 0 0 0; 
+}
+
+.band-content-inline {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 40px;
+}
+
+.text-side-band {
+    color: #ffffff;
+    max-width: 500px;
+}
+
+.eng-tag-band {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #1a365d;
+    font-weight: 700;
+    display: block;
+    margin-bottom: 6px;
+}
+
+.text-side-band h1 {
+    font-size: 32px;
+    font-weight: 800;
+    color: #1a365d;
+    margin-bottom: 8px;
+    line-height: 1.2;
+}
+
+.text-side-band p {
+    font-size: 14px;
+    color: #ffffff;
+    opacity: 0.95;
+}
+
+.btn-drawing-action {
+    display: inline-block;
+    padding: 15px 30px;
+    background-color: #1a365d; 
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: 700;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 15px rgba(26, 54, 93, 0.25);
+}
+
+.btn-drawing-action:hover {
+    background-color: #2b6cb0;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(43, 108, 176, 0.35);
+}
+
+/* ==========================================
+   4. SEZIONE CV COMPLETA
+   ========================================== */
+.cv-section { background-color: #ffffff; }
+.cv-profile-intro { background-color: #f8fafc; border-left: 4px solid #1a365d; padding: 25px; border-radius: 6px; margin-bottom: 40px; font-size: 16px; color: #334155; line-height: 1.6;}
+.cv-two-columns { display: flex; gap: 50px; }
+.cv-left-main-col { flex: 2; }
+.cv-right-side-col { flex: 1; display: flex; flex-direction: column; gap: 30px; }
+.cv-block-title { display: flex; align-items: center; gap: 12px; margin-bottom: 25px; border-bottom: 2px solid #f1f5f9; padding-bottom: 8px; }
+.cv-icon-tag { font-size: 24px; }
+.cv-block-title h3 { font-size: 22px; color: #1a365d; font-weight: 700; }
+.space-top-block { margin-top: 40px; }
+
+/* Timeline Dettagliata */
+.timeline { border-left: 3px solid #e2e8f0; padding-left: 30px; position: relative; }
+.timeline-item { margin-bottom: 40px; position: relative; }
+.timeline-item::before { content: ''; position: absolute; left: -37px; top: 6px; width: 11px; height: 11px; border-radius: 50%; background-color: #00b4d8; border: 3px solid #ffffff; box-shadow: 0 0 0 3px #00b4d8; }
+.timeline-item h3 { color: #1a365d; font-size: 20px; font-weight: 700; margin-bottom: 2px; }
+.timeline-item h4 { color: #2b6cb0; font-size: 15px; font-weight: 600; margin-bottom: 10px; }
+.date { font-size: 13px; color: #4a5568; font-weight: 700; margin-bottom: 8px; background: #edf2f7; display: inline-block; padding: 2px 10px; border-radius: 4px; }
+.cv-details-list { list-style-type: none; }
+.cv-details-list li { font-size: 14px; color: #475569; margin-bottom: 6px; position: relative; padding-left: 15px; }
+.cv-details-list li::before { content: '•'; position: absolute; left: 0; color: #00b4d8; font-weight: bold; }
+
+/* Certificazioni */
+.cv-certifications-box { display: flex; flex-direction: column; gap: 20px; }
+.cert-item { background-color: #f8fafc; padding: 20px; border-radius: 6px; border-left: 3px solid #00b4d8; }
+.cert-item h5 { font-size: 15px; color: #1a365d; font-weight: 700; margin-bottom: 6px; display: flex; justify-content: space-between; align-items: center; }
+.cert-year { background: #e2e8f0; font-size: 12px; padding: 2px 8px; border-radius: 4px; color: #4a5568; }
+.cert-item p { font-size: 13px; color: #475569
